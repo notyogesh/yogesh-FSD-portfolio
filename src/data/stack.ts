@@ -31,6 +31,7 @@ export const stack: StackGroup[] = [
       l("Bootstrap", "bootstrap"),
       l("HTML5", "html5"),
       l("CSS3", "css"),
+      m("Responsive, Mobile-First Design", "RWD"),
     ],
   },
   {
