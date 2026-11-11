@@ -17,7 +17,7 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "radial-gradient(70% 90% at 95% 0%, rgba(224,35,78,0.45), #0b0b0b 70%)",
+          background: "radial-gradient(70% 90% at 95% 0%, rgba(109,40,217,0.55), #0b0b0b 70%)",
           color: "#f2f2f0",
         }}
       >
@@ -27,14 +27,14 @@ export default function OpenGraphImage() {
               width: 14,
               height: 14,
               borderRadius: 14,
-              background: "#e0234e",
+              background: "#8b5cf6",
             }}
           />
           Available for work
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ fontSize: 92, fontWeight: 700, lineHeight: 1.05 }}>{SITE.name}</div>
-          <div style={{ fontSize: 48, color: "#ff6b8a", fontWeight: 600 }}>{SITE.jobTitle}</div>
+          <div style={{ fontSize: 48, color: "#c4b5fd", fontWeight: 600 }}>{SITE.jobTitle}</div>
           <div style={{ fontSize: 30, color: "#c9c9c4", maxWidth: 900 }}>
             Next.js · React · Node.js · NestJS · Flutter · Chennai, India
           </div>

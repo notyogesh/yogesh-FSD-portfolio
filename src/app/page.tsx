@@ -73,11 +73,11 @@ export default function Home() {
   return (
     <div className="grid grid-cols-1 gap-3 md:grid-cols-12">
       <div className="flex flex-col gap-3 md:col-span-7">
-        {/* intro */}
-        <FadeUp>
+        {/* intro: plain markup (no fade-in) so the first screen paints with the HTML, which keeps Largest Contentful Paint fast */}
+        <div>
           <div className="flex min-h-[300px] flex-col justify-between gap-6 rounded-2xl bg-card p-6 md:min-h-[360px]">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-line px-3 py-1 text-xs font-medium">
-              <span className="size-1.5 rounded-full bg-accent" aria-hidden />
+              <span className="size-1.5 rounded-full bg-accent-text" aria-hidden />
               Available for work
             </span>
             <div>
@@ -100,7 +100,7 @@ export default function Home() {
               </Link>
             </div>
           </div>
-        </FadeUp>
+        </div>
 
         {/* mobile-only plant tile (never loads on desktop: it is display:none there) */}
         <FadeUp className="md:hidden">
@@ -126,7 +126,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
           {featured.map((p, i) => (
-            <ProjectCard key={p.slug} project={p} index={i} compact />
+            <ProjectCard key={p.slug} project={p} index={i} compact heading="h3" />
           ))}
         </div>
 

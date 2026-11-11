@@ -3,11 +3,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --accent: #e0234e; /* NestJS red */
-  --accent-2: #ff6b8a; /* lighter rose, for background glows */
-  --accent-deep: #c81e45; /* darker red: white text on button gradients keeps >= 4.5:1 contrast */
-  --accent-text: #c81e45; /* accent used as TEXT colour on the light background */
-  --glow: 16%;
+  --accent: #6d28d9; /* dark purple */
+  --accent-2: #a78bfa; /* lighter violet, for background glows */
+  --accent-deep: #4c1d95; /* deep purple: white text on button gradients keeps >= 4.5:1 contrast */
+  --accent-text: #5b21b6; /* accent used as TEXT colour on the light background */
+  --glow: 15%;
   --bg: #f4f4f2;
   --card: #e9e9e6;
   --card-hover: #dfdfdb;
@@ -17,8 +17,8 @@
 }
 
 .dark {
-  --accent-text: #ff6b8a; /* lighter red on dark backgrounds */
-  --glow: 26%;
+  --accent-text: #c4b5fd; /* light violet on dark backgrounds */
+  --glow: 34%;
   --bg: #0b0b0b;
   --card: #151515;
   --card-hover: #1c1c1c;

@@ -49,6 +49,20 @@ export default function ResumePage() {
         </p>
       </FadeUp>
 
+      <FadeUp delay={0.3} className="mb-8 px-1">
+        <a
+          href="/Yogeshwara_K_Resume.pdf"
+          download="Yogeshwara_K_Resume.pdf"
+          className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-linear-to-br from-accent-deep to-accent px-6 py-3 text-sm font-medium text-white shadow-[0_10px_28px_-10px_var(--accent)] transition-transform hover:-translate-y-0.5"
+        >
+          <svg viewBox="0 0 24 24" className="size-4" aria-hidden fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14" />
+          </svg>
+          Download resume
+          <span className="sr-only"> (PDF, 50 KB)</span>
+        </a>
+      </FadeUp>
+
       <div className="flex flex-col gap-3">
         <Section title="Experience">
           <ol className="flex flex-col gap-8">
