@@ -9,7 +9,7 @@ export const useIntroReady = () => useContext(IntroContext);
 
 const DURATION = 2.6; // seconds for the blob to cover the whole screen
 const READY_AT = 0.9; // seconds in when page content may start revealing
-const OVERLAY = [0.02, 0.02, 0.02] as const;
+const OVERLAY = [0.082, 0.067, 0.055] as const;
 
 /* ---------- shaders ---------- */
 

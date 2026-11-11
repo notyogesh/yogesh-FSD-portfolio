@@ -17,27 +17,20 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "radial-gradient(70% 90% at 95% 0%, rgba(109,40,217,0.55), #0b0b0b 70%)",
-          color: "#f2f2f0",
+          background: "radial-gradient(70% 90% at 100% 0%, rgba(255,138,80,0.5), #f3eee6 65%)",
+          color: "#15110e",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 28, color: "#c9c9c4" }}>
-          <div
-            style={{
-              width: 14,
-              height: 14,
-              borderRadius: 14,
-              background: "#8b5cf6",
-            }}
-          />
-          Available for work
+        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 28, color: "#5f564d" }}>
+          <div style={{ width: 14, height: 14, borderRadius: 14, background: "#d9381e" }} />
+          Business development &amp; full stack · Chennai
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div style={{ fontSize: 92, fontWeight: 700, lineHeight: 1.05 }}>{SITE.name}</div>
-          <div style={{ fontSize: 48, color: "#c4b5fd", fontWeight: 600 }}>{SITE.jobTitle}</div>
-          <div style={{ fontSize: 30, color: "#c9c9c4", maxWidth: 900 }}>
-            Next.js · React · Node.js · NestJS · Flutter · Chennai, India
-          </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <div style={{ fontSize: 150, fontWeight: 700, lineHeight: 1 }}>I build it.</div>
+          <div style={{ fontSize: 150, fontWeight: 700, lineHeight: 1, color: "#d9381e" }}>I grow it.</div>
+        </div>
+        <div style={{ fontSize: 34, color: "#15110e" }}>
+          {`${SITE.name} · Next.js · Node.js · Flutter · Google Ads · SEO · GA4`}
         </div>
       </div>
     ),

@@ -1,47 +1,44 @@
 import { contact } from "@/data/contact";
 
 /**
- * Central site settings used by metadata, the sitemap, RSS and structured data.
- * Set NEXT_PUBLIC_SITE_URL in Vercel once you connect a custom domain (for example https://yogeshwara.dev).
+ * Central settings for the combined (business development + full stack) site.
+ * The site address comes from NEXT_PUBLIC_SITE_URL if you set it (custom domain), otherwise from the address Vercel
+ * gives this project automatically, so canonical links always match wherever it is deployed.
  */
+const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
 export const SITE = {
   name: "Yogeshwara K",
-  jobTitle: "Full Stack Developer",
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://yogesh-fsd-portfolio.vercel.app").replace(/\/$/, ""),
-  title: "Yogeshwara K — Full Stack Developer in Chennai",
+  jobTitle: "Business Development Manager & Full Stack Developer",
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? (vercelHost ? `https://${vercelHost}` : "http://localhost:3000")).replace(/\/$/, ""),
+  title: "Yogeshwara K — Business Development & Full Stack Developer in Chennai",
   description:
-    "Full stack developer in Chennai with 3.5+ years of experience building web and mobile apps, CRM platforms, e-commerce stores and AI automation with Next.js, React, Node.js, NestJS and Flutter. Available for hire.",
+    "Full stack developer and growth marketer in Chennai. I build the product (Next.js, React, Node.js, NestJS, Flutter) and grow it: ₹20 lakh+ in ads managed, 3x ROAS, SEO and GA4 / GTM tracking. Available for hire.",
   locale: "en_IN",
   linkedin: contact.linkedin,
   keywords: [
     "full stack developer Chennai",
+    "digital marketing and web development",
+    "business development manager Chennai",
     "Next.js developer",
-    "React developer",
-    "Node.js developer",
-    "NestJS developer",
-    "Flutter developer",
-    "freelance web developer India",
-    "WhatsApp Business API developer",
-    "hire full stack developer",
+    "Google Ads specialist",
+    "SEO specialist",
+    "hire full stack developer and marketer",
+    "e-commerce growth and development",
   ],
   knowsAbout: [
     "Next.js",
     "React",
-    "TypeScript",
     "Node.js",
     "NestJS",
     "Flutter",
-    "MongoDB",
-    "PostgreSQL",
-    "AWS",
-    "WhatsApp Business API",
-    "Razorpay",
-    "Stripe",
+    "Google Ads",
+    "Meta Ads",
     "SEO",
-    "Web accessibility",
-    "Framer Motion",
-    "Redux Toolkit",
-    "GSAP",
+    "Google Analytics 4",
+    "Google Tag Manager",
+    "Shopify",
+    "Business development",
   ],
   employer: { name: "TechieBall", url: "https://techieball.com/" },
 };

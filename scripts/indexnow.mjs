@@ -3,10 +3,14 @@
  * (Google does not support IndexNow; submit your sitemap in Google Search Console instead).
  *
  * Usage (after deploying):   npm run seo:ping
- * Optional:                  SITE_URL=https://your-domain.com npm run seo:ping
+ * Required:                  SITE_URL=https://your-site.vercel.app npm run seo:ping
  */
 const KEY = "29b1567d7af75f8fa56a2d663492840a";
-const SITE = (process.env.SITE_URL ?? "https://yogesh-fsd-portfolio.vercel.app").replace(/\/$/, "");
+const SITE = (process.env.SITE_URL ?? "").replace(/\/$/, "");
+if (!SITE) {
+  console.error("Set SITE_URL first, for example: SITE_URL=https://your-site.vercel.app npm run seo:ping");
+  process.exit(1);
+}
 
 const sitemap = await fetch(`${SITE}/sitemap.xml`);
 if (!sitemap.ok) {

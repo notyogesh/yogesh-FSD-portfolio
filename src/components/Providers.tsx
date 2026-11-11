@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { ThemeProvider } from "next-themes";
 import { MotionConfig } from "motion/react";
 import Lenis from "lenis";
 import { IntroProvider } from "./Intro";
@@ -24,15 +23,14 @@ function SmoothScroll() {
   return null;
 }
 
+/** Page-load blob reveal (Intro), smooth scrolling and reduced-motion handling. Light theme only. */
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-      <MotionConfig reducedMotion="user">
-        <IntroProvider>
-          <SmoothScroll />
-          {children}
-        </IntroProvider>
-      </MotionConfig>
-    </ThemeProvider>
+    <MotionConfig reducedMotion="user">
+      <IntroProvider>
+        <SmoothScroll />
+        {children}
+      </IntroProvider>
+    </MotionConfig>
   );
 }
