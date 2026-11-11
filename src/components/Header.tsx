@@ -39,7 +39,7 @@ export default function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-bg/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between gap-4 px-4 text-sm font-medium sm:px-6">
-        <Link href="/" className="flex items-baseline gap-3 whitespace-nowrap py-2" aria-label="Yogeshwara K, home">
+        <Link href="/" className="flex items-baseline gap-3 whitespace-nowrap py-2">
           <span>Yogeshwara K</span>
           <span className="hidden text-muted xl:inline">Full Stack Developer</span>
         </Link>

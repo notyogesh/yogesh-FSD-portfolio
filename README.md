@@ -9,7 +9,15 @@ Personal portfolio of Yogeshwara K, a full stack developer. Built with Next.js, 
 - Motion for scroll-reveal animations, Lenis for smooth scrolling
 - `next-themes` for dark / light mode
 - A scroll-driven Spline scene, loaded lazily to keep the page fast
-- A small WebGL shader for the page-load intro
+- A page-load "dial" reveal (ring, tick marks and orbiting skill names), pure CSS and SVG
+
+## Related portfolios (other branches)
+
+| Branch | Site |
+| --- | --- |
+| `main` | Full stack developer portfolio (this branch) |
+| `digital-marketing` | Digital marketing and growth portfolio |
+| `combined` | Business development + full stack portfolio ("Build / Grow") |
 
 ## Getting started
 
