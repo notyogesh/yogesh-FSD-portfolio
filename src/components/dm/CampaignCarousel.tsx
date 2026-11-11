@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useReducedMotion } from "motion/react";
 import type { Campaign } from "@/data/campaigns";
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -13,6 +14,39 @@ const initials = (name: string) =>
     .slice(0, 3)
     .toUpperCase();
 
+const AUTO_MS = 3800;
+const host = (url?: string) => (url ? url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "") : "coming soon");
+
+/** A designed stand-in for a missing screenshot: a mock browser window tinted with the card colour. */
+function Placeholder({ name, tint, url }: { name: string; tint: string; url?: string }) {
+  return (
+    <div
+      aria-hidden
+      className="relative flex h-full flex-col overflow-hidden"
+      style={{
+        background: `radial-gradient(120% 90% at 85% 0%, ${tint}, transparent 60%), radial-gradient(90% 70% at 0% 100%, rgba(228,28,45,0.35), transparent 60%), #120d0d`,
+      }}
+    >
+      <div className="flex items-center gap-1.5 border-b border-white/10 bg-black/30 px-3 py-2">
+        <span className="size-2 rounded-full bg-white/25" />
+        <span className="size-2 rounded-full bg-white/25" />
+        <span className="size-2 rounded-full bg-white/25" />
+        <span className="ml-2 truncate rounded-full bg-white/10 px-3 py-0.5 text-[10px] tracking-wide text-white/70">
+          {host(url)}
+        </span>
+      </div>
+      <div className="relative flex flex-1 flex-col justify-center gap-2 px-5">
+        <span className="font-display text-5xl leading-none text-white/90">{initials(name)}</span>
+        <span className="h-1.5 w-3/4 rounded-full bg-white/25" />
+        <span className="h-1.5 w-1/2 rounded-full bg-white/15" />
+        <span className="mt-2 h-6 w-20 rounded-full bg-accent-deep/80" />
+        <span className="absolute -right-6 -top-6 size-28 rounded-full border border-white/10" />
+        <span className="absolute -bottom-10 right-6 size-24 rounded-full border border-white/10" />
+      </div>
+    </div>
+  );
+}
+
 /**
  * A draggable 3D carousel, like a stack of tall cards on a turntable: the middle card is in focus and
  * the neighbours tilt away. Drag, swipe, use the arrow buttons, or press the left / right arrow keys.
@@ -23,7 +57,22 @@ export default function CampaignCarousel({ items }: { items: Campaign[] }) {
   const [dragging, setDragging] = useState(false);
   const startX = useRef(0);
   const moved = useRef(false);
+  const [playing, setPlaying] = useState(true); // user's play / pause choice
+  const [hold, setHold] = useState(false); // hover or keyboard focus pauses too
+  const reduce = useReducedMotion();
   const n = items.length;
+  const auto = playing && !hold && !dragging && !reduce;
+
+  // auto-advance: slides forward, then glides back to the first card
+  useEffect(() => {
+    if (!auto) return;
+    const id = window.setInterval(() => {
+      if (document.hidden) return;
+      setActive((a) => (a >= n - 1 ? 0 : a + 1));
+    }, AUTO_MS);
+    return () => window.clearInterval(id);
+  }, [auto, n, active]);
+
   const go = (i: number) => setActive(Math.max(0, Math.min(n - 1, i)));
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -63,6 +112,10 @@ export default function CampaignCarousel({ items }: { items: Campaign[] }) {
       aria-label="Campaign case studies"
       tabIndex={0}
       onKeyDown={onKeyDown}
+      onMouseEnter={() => setHold(true)}
+      onMouseLeave={() => setHold(false)}
+      onFocus={() => setHold(true)}
+      onBlur={() => setHold(false)}
       className="relative select-none outline-offset-4"
     >
       <div
@@ -122,9 +175,7 @@ export default function CampaignCarousel({ items }: { items: Campaign[] }) {
                       className="pointer-events-none object-cover object-top"
                     />
                   ) : (
-                    <div className="grid h-full place-items-center font-display text-4xl text-white/80">
-                      {initials(item.client)}
-                    </div>
+                    <Placeholder name={item.client} tint={item.tint} url={item.url} />
                   )}
                 </div>
                 <div className="mt-auto flex flex-col gap-2 pt-4">
@@ -167,6 +218,16 @@ export default function CampaignCarousel({ items }: { items: Campaign[] }) {
         <p aria-live="polite" className="min-w-24 text-center text-sm tabular-nums text-muted">
           <span className="text-fg">{pad(active + 1)}</span> / {pad(n)}
         </p>
+        {!reduce ? (
+          <button
+            type="button"
+            onClick={() => setPlaying((p) => !p)}
+            aria-label={playing ? "Pause automatic scrolling" : "Play automatic scrolling"}
+            className="grid size-11 place-items-center rounded-full border border-white/15 text-xs transition-colors hover:bg-white/10"
+          >
+            <span aria-hidden>{playing ? "❚❚" : "▶"}</span>
+          </button>
+        ) : null}
         <button
           type="button"
           onClick={() => go(active + 1)}
@@ -177,6 +238,15 @@ export default function CampaignCarousel({ items }: { items: Campaign[] }) {
           <span aria-hidden>→</span>
         </button>
       </div>
+      {!reduce ? (
+        <div aria-hidden className="mx-auto mt-3 h-0.5 w-40 overflow-hidden rounded-full bg-white/10">
+          <div
+            key={`${active}-${auto}`}
+            className="h-full origin-left bg-accent-deep"
+            style={auto ? { animation: `dm-progress ${AUTO_MS}ms linear forwards` } : { transform: "scaleX(0)" }}
+          />
+        </div>
+      ) : null}
       <p className="mt-3 text-center text-xs text-muted">Drag to browse. Tap the card in the middle to open the live site.</p>
     </div>
   );
