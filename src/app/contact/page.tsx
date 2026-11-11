@@ -1,0 +1,84 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import CopyButton from "@/components/CopyButton";
+import { MailIcon, PhoneIcon, PinIcon, WhatsAppIcon } from "@/components/icons";
+import { FadeUp, TextReveal } from "@/components/Reveal";
+import { contact } from "@/data/contact";
+
+export const metadata: Metadata = { title: "Contact — Yogeshwara K" };
+
+function Card({
+  icon,
+  label,
+  value,
+  children,
+  delay,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  children?: React.ReactNode;
+  delay: number;
+}) {
+  return (
+    <FadeUp delay={delay}>
+      <div className="flex h-full min-h-[220px] flex-col justify-between gap-6 rounded-2xl bg-card p-5 transition-colors duration-300 hover:bg-card-hover">
+        <div className="flex items-center gap-3 text-sm text-muted">
+          <span className="grid size-9 place-items-center rounded-full border border-line text-fg">{icon}</span>
+          {label}
+        </div>
+        <div>
+          <p className="break-words text-xl font-medium tracking-tight sm:text-2xl">{value}</p>
+          {children ? <div className="mt-4 flex flex-wrap items-center gap-2">{children}</div> : null}
+        </div>
+      </div>
+    </FadeUp>
+  );
+}
+
+const action =
+  "inline-flex items-center gap-2 rounded-full bg-linear-to-br from-accent to-accent-2 px-4 py-1.5 text-sm font-medium text-white shadow-[0_8px_22px_-10px_var(--accent)] transition-transform hover:-translate-y-0.5";
+
+export default function ContactPage() {
+  return (
+    <>
+      <TextReveal
+        as="h1"
+        text="Let's build something together"
+        className="mb-4 max-w-3xl px-1 text-4xl font-medium leading-[1.1] tracking-tight sm:text-6xl"
+      />
+      <FadeUp delay={0.2} className="mb-8 max-w-2xl px-1 text-muted">
+        <p>Have a project, a role or an idea? Send me a message — I usually reply within a day.</p>
+      </FadeUp>
+
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        <Card icon={<MailIcon />} label="Email" value={contact.email} delay={0}>
+          <a href={`mailto:${contact.email}`} className={action}>
+            <MailIcon /> Send email
+          </a>
+          <CopyButton value={contact.email} label="Copy email address" text="Copy" />
+        </Card>
+
+        <Card icon={<PhoneIcon />} label="Phone" value={contact.phone} delay={0.06}>
+          <a href={contact.phoneHref} className={action}>
+            <PhoneIcon /> Call
+          </a>
+          <CopyButton value={contact.phone} label="Copy phone number" text="Copy" />
+        </Card>
+
+        <Card icon={<WhatsAppIcon />} label="WhatsApp" value={contact.phone} delay={0.12}>
+          <a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" className={action}>
+            <WhatsAppIcon /> Chat on WhatsApp
+          </a>
+          <CopyButton value={contact.phoneRaw} label="Copy WhatsApp number" text="Copy" />
+        </Card>
+
+        <Card icon={<PinIcon />} label="Location" value={contact.location} delay={0.18}>
+          <Link href="/portfolio" className="text-sm text-muted underline-offset-4 hover:underline">
+            See my work →
+          </Link>
+        </Card>
+      </div>
+    </>
+  );
+}

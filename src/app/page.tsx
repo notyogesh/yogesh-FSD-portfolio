@@ -1,69 +1,166 @@
-import Image from "next/image";
+import Link from "next/link";
+import ProjectCard from "@/components/ProjectCard";
+import SplineScene from "@/components/SplineScene";
+import { FadeUp, TextReveal } from "@/components/Reveal";
+import { logos } from "@/data/logos";
+import { projects } from "@/data/projects";
 
+const featured = ["cleomitra", "bill-management-system", "aivaantech-lms", "zhaulz"]
+  .map((slug) => projects.find((p) => p.slug === slug))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+const hireClass =
+  "inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-linear-to-br from-accent to-accent-2 px-5 py-2.5 text-sm font-medium text-white shadow-[0_10px_28px_-10px_var(--accent)] transition-transform hover:-translate-y-0.5";
+
+function Tile({
+  href,
+  label,
+  hint,
+  className = "",
+  delay = 0,
+  children,
+}: {
+  href: string;
+  label: string;
+  hint?: string;
+  className?: string;
+  delay?: number;
+  children?: React.ReactNode;
+}) {
+  return (
+    <FadeUp delay={delay} className={className}>
+      <Link
+        href={href}
+        className="group flex h-full min-h-[150px] flex-col justify-between rounded-2xl bg-card p-5 transition-colors duration-300 hover:bg-card-hover"
+      >
+        <div className="text-muted">{children}</div>
+        <div className="flex items-end justify-between text-sm font-medium">
+          <div>
+            <p>{label}</p>
+            {hint ? <p className="mt-0.5 font-normal text-muted">{hint}</p> : null}
+          </div>
+          <span
+            aria-hidden
+            className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+          >
+            ↗
+          </span>
+        </div>
+      </Link>
+    </FadeUp>
+  );
+}
+
+function MiniLogos({ keys }: { keys: (keyof typeof logos)[] }) {
+  return (
+    <div className="flex flex-wrap gap-2" aria-hidden>
+      {keys.map((k) => (
+        <span key={k} className="grid size-8 place-items-center rounded-full border border-line">
+          <svg viewBox="0 0 24 24" className="size-4 fill-current">
+            <path d={logos[k].path} />
+          </svg>
+        </span>
+      ))}
+    </div>
+  );
+}
+
+/**
+ * Desktop: content on the left scrolls, the Spline plant is pinned on the right and grows across the
+ * whole page scroll (so a taller page = a longer growth). Mobile: the plant is a normal tile after the intro.
+ */
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="grid grid-cols-1 gap-3 md:grid-cols-12">
+      <div className="flex flex-col gap-3 md:col-span-7">
+        {/* intro */}
+        <FadeUp>
+          <div className="flex min-h-[300px] flex-col justify-between gap-6 rounded-2xl bg-card p-6 md:min-h-[360px]">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-line px-3 py-1 text-xs font-medium">
+              <span className="size-1.5 rounded-full bg-accent" aria-hidden />
+              Available for work
+            </span>
+            <div>
+              <p className="mb-3 text-sm text-muted">Hey, I&apos;m Yogeshwara K</p>
+              <TextReveal
+                as="h1"
+                text="Full Stack developer building web, mobile and AI products."
+                className="max-w-3xl text-3xl font-medium leading-[1.08] tracking-tight sm:text-4xl lg:text-5xl"
+              />
+            </div>
+            <div className="flex items-center gap-3">
+              <Link href="/contact" className={hireClass}>
+                Hire me
+              </Link>
+              <Link
+                href="/portfolio"
+                className="rounded-full border border-line px-5 py-2.5 text-sm font-medium transition-colors hover:bg-card-hover"
+              >
+                View work
+              </Link>
+            </div>
+          </div>
+        </FadeUp>
+
+        {/* mobile-only plant tile (never loads on desktop: it is display:none there) */}
+        <FadeUp className="md:hidden">
+          <div className="relative h-[340px] overflow-hidden rounded-2xl bg-card">
+            <SplineScene className="absolute inset-0" />
+          </div>
+        </FadeUp>
+
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <Tile href="/stack" label="Stack" hint="Tools I use" delay={0.05}>
+            <MiniLogos keys={["nextjs", "react", "node", "typescript"]} />
+          </Tile>
+          <Tile href="/about" label="About" hint="Who I am" delay={0.1} />
+          <Tile href="/portfolio" label="Portfolio" hint="Selected work" delay={0.15} />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* selected work */}
+        <div className="mt-6 flex items-end justify-between px-1">
+          <h2 className="text-2xl font-medium tracking-tight sm:text-3xl">Selected work</h2>
+          <Link href="/portfolio" className="text-sm text-muted underline-offset-4 hover:text-fg hover:underline">
+            View all →
+          </Link>
         </div>
-      </main>
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+          {featured.map((p, i) => (
+            <ProjectCard key={p.slug} project={p} index={i} />
+          ))}
+        </div>
+
+        <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <Tile href="/resume" label="Resume" hint="Experience & education" delay={0.05} />
+          <Tile href="/contact" label="Contact" hint="Let's build together" delay={0.1} />
+        </div>
+
+        <FadeUp>
+          <div className="flex min-h-[110px] items-end justify-between gap-4 rounded-2xl bg-card p-5 text-sm">
+            <span className="text-muted">Based in</span>
+            <p className="text-2xl font-medium tracking-tight sm:text-3xl">Chennai, India</p>
+          </div>
+        </FadeUp>
+
+        <FadeUp>
+          <div className="flex flex-col items-start justify-between gap-6 rounded-2xl bg-card p-6 sm:flex-row sm:items-center sm:p-8">
+            <div>
+              <h2 className="text-2xl font-medium tracking-tight sm:text-3xl">Have something in mind?</h2>
+              <p className="mt-2 text-muted">Let&apos;s talk about your project, a role, or an idea.</p>
+            </div>
+            <Link href="/contact" className={hireClass}>
+              Hire me
+            </Link>
+          </div>
+        </FadeUp>
+      </div>
+
+      {/* desktop: pinned plant column */}
+      <aside className="hidden md:col-span-5 md:block">
+        <div className="sticky top-20 h-[calc(100svh-6rem)] min-h-[420px] overflow-hidden rounded-2xl bg-card">
+          <SplineScene className="absolute inset-0" />
+        </div>
+      </aside>
     </div>
   );
 }
