@@ -2,29 +2,20 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Digital-marketing site: always dark, cinematic, red on near-black. */
 :root {
-  --accent: #6d28d9; /* dark purple */
-  --accent-2: #a78bfa; /* lighter violet, for background glows */
-  --accent-deep: #4c1d95; /* deep purple: white text on button gradients keeps >= 4.5:1 contrast */
-  --accent-text: #5b21b6; /* accent used as TEXT colour on the light background */
-  --glow: 15%;
-  --bg: #f4f4f2;
-  --card: #e9e9e6;
-  --card-hover: #dfdfdb;
-  --fg: #111111;
-  --muted: #5f5f5a; /* >= 4.5:1 on bg and cards */
-  --line: #d8d8d3;
-}
-
-.dark {
-  --accent-text: #c4b5fd; /* light violet on dark backgrounds */
-  --glow: 34%;
-  --bg: #0b0b0b;
-  --card: #151515;
-  --card-hover: #1c1c1c;
-  --fg: #f2f2f0;
-  --muted: #8a8a85;
-  --line: #242424;
+  color-scheme: dark;
+  --accent: #e5121d; /* red (white text on it is 4.7:1) */
+  --accent-2: #ff4b55; /* lighter red, for glows */
+  --accent-deep: #b80d16; /* deep red: white text keeps 6.8:1 */
+  --accent-text: #ff6b72; /* red used as TEXT on dark backgrounds */
+  --glow: 30%;
+  --bg: #0c0a0a;
+  --card: #151212;
+  --card-hover: #1d1818;
+  --fg: #f4efec;
+  --muted: #a39a96; /* >= 4.5:1 on bg and cards */
+  --line: #2a2323;
 }
 
 @theme inline {
@@ -39,25 +30,24 @@
   --color-muted: var(--muted);
   --color-line: var(--line);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
 }
 
-html.lenis,
-html.lenis body {
-  height: auto;
+html {
+  scroll-behavior: smooth;
 }
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+section[id],
+header[id] {
+  scroll-margin-top: 5rem;
 }
 
 body {
   background: var(--bg);
   color: var(--fg);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* page-wide ambient glow in the button colour */
+/* warm red glow behind everything */
 body::before {
   content: "";
   position: fixed;
@@ -65,19 +55,16 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(60% 50% at 92% -6%, color-mix(in srgb, var(--accent) var(--glow), transparent), transparent 70%),
-    radial-gradient(55% 50% at -6% 104%, color-mix(in srgb, var(--accent-2) calc(var(--glow) * 0.8), transparent), transparent 70%),
-    radial-gradient(40% 35% at 50% 58%, color-mix(in srgb, var(--accent) calc(var(--glow) * 0.28), transparent), transparent 72%);
+    radial-gradient(60% 45% at 50% -8%, color-mix(in srgb, var(--accent) var(--glow), transparent), transparent 70%),
+    radial-gradient(45% 40% at 105% 95%, color-mix(in srgb, var(--accent-2) 14%, transparent), transparent 70%);
 }
 
-/* keyboard focus: always visible, never colour-only */
 :focus-visible {
   outline: 2px solid var(--accent-text);
   outline-offset: 3px;
   border-radius: 6px;
 }
 
-/* skip link: hidden until it receives keyboard focus */
 .skip-link {
   position: fixed;
   left: 1rem;
@@ -96,7 +83,6 @@ body::before {
   transform: translateY(0);
 }
 
-/* respect the OS "reduce motion" setting for CSS animations and transitions too */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -109,6 +95,6 @@ body::before {
 }
 
 ::selection {
-  background: var(--fg);
-  color: var(--bg);
+  background: var(--accent);
+  color: #fff;
 }

@@ -1,47 +1,51 @@
 import { contact } from "@/data/contact";
 
 /**
- * Central site settings used by metadata, the sitemap, RSS and structured data.
- * Set NEXT_PUBLIC_SITE_URL in Vercel once you connect a custom domain (for example https://yogeshwara.dev).
+ * Central settings for the digital-marketing site (metadata, sitemap, structured data).
+ * The site address comes from NEXT_PUBLIC_SITE_URL if you set it (custom domain), otherwise from the address Vercel
+ * gives this project automatically, so canonical links always match wherever it is deployed.
  */
+const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
 export const SITE = {
   name: "Yogeshwara K",
-  jobTitle: "Full Stack Developer",
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://yogesh-fsd-portfolio.vercel.app").replace(/\/$/, ""),
-  title: "Yogeshwara K — Full Stack Developer in Chennai",
+  jobTitle: "Digital Marketing & Growth Specialist",
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? (vercelHost ? `https://${vercelHost}` : "http://localhost:3000")).replace(/\/$/, ""),
+  title: "Yogeshwara K — Digital Marketing & Growth Specialist in Chennai",
   description:
-    "Full stack developer in Chennai with 3.5+ years of experience building web and mobile apps, CRM platforms, e-commerce stores and AI automation with Next.js, React, Node.js, NestJS and Flutter. Available for hire.",
+    "Digital marketing and growth specialist in Chennai. ₹20 lakh+ in Meta and Google Ads managed across 15+ clients, 3x ROAS, 80% lower cost per lead, plus SEO, local SEO and GA4 / GTM tracking. Available for hire.",
   locale: "en_IN",
   linkedin: contact.linkedin,
   keywords: [
-    "full stack developer Chennai",
-    "Next.js developer",
-    "React developer",
-    "Node.js developer",
-    "NestJS developer",
-    "Flutter developer",
-    "freelance web developer India",
-    "WhatsApp Business API developer",
-    "hire full stack developer",
+    "digital marketing specialist Chennai",
+    "Google Ads specialist",
+    "Meta Ads specialist",
+    "SEO specialist",
+    "local SEO Google Business Profile",
+    "GA4 Google Tag Manager tracking",
+    "e-commerce marketing Shopify",
+    "performance marketing freelancer India",
   ],
   knowsAbout: [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "Node.js",
-    "NestJS",
-    "Flutter",
-    "MongoDB",
-    "PostgreSQL",
-    "AWS",
-    "WhatsApp Business API",
-    "Razorpay",
-    "Stripe",
+    "Google Ads",
+    "Meta Ads",
+    "YouTube Ads",
     "SEO",
-    "Web accessibility",
-    "Framer Motion",
-    "Redux Toolkit",
-    "GSAP",
+    "Local SEO",
+    "Google Analytics 4",
+    "Google Tag Manager",
+    "Conversion rate optimisation",
+    "Shopify",
+    "Amazon Seller Central",
+    "Social media marketing",
+  ],
+  services: [
+    "Paid media (Google Ads, Meta Ads, YouTube Ads)",
+    "SEO and keyword strategy",
+    "Local SEO and Google Business Profile",
+    "Analytics and conversion tracking (GA4, GTM, Meta Pixel)",
+    "E-commerce and marketplace growth",
+    "Social media and content",
   ],
   employer: { name: "TechieBall", url: "https://techieball.com/" },
 };

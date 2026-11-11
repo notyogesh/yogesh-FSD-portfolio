@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ConsentReset from "@/components/ConsentReset";
 import { contact } from "@/data/contact";
 
@@ -25,7 +26,10 @@ const p = "leading-relaxed text-muted";
 
 export default function PrivacyPage() {
   return (
-    <article className="mx-auto max-w-3xl">
+    <article className="mx-auto max-w-3xl px-4 py-24">
+      <Link href="/" className="mb-6 inline-flex min-h-6 items-center px-1 text-sm text-muted underline-offset-4 hover:text-fg hover:underline">
+        ← Back to home
+      </Link>
       <h1 className="mb-2 px-1 text-4xl font-medium leading-[1.1] tracking-tight sm:text-6xl">Privacy</h1>
       <p className="mb-8 px-1 text-sm text-muted">Last updated: November 2026</p>
 

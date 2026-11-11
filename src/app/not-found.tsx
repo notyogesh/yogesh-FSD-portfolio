@@ -19,10 +19,10 @@ export default function NotFound() {
           <Link href="/" className={primary}>
             Go home
           </Link>
-          <Link href="/portfolio" className={secondary}>
-            View work
+          <Link href="/#campaigns" className={secondary}>
+            See campaigns
           </Link>
-          <Link href="/contact" className={secondary}>
+          <Link href="/#contact" className={secondary}>
             Contact
           </Link>
         </div>
