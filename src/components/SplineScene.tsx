@@ -114,5 +114,6 @@ export default function SplineScene({ className }: { className?: string }) {
     };
   }, []);
 
-  return <div ref={host} className={className} aria-label="Interactive 3D scene" />;
+  // purely decorative animation: hidden from assistive technology
+  return <div ref={host} className={className} aria-hidden="true" />;
 }

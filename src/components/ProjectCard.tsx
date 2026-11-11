@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
-import { ClipReveal } from "./Reveal";
+import { ClipReveal, ScrollScale } from "./Reveal";
 import type { Project } from "@/data/projects";
 
 /** Soft, muted backdrops (cycled per card) so each mockup sits in its own "room". */
@@ -39,17 +39,27 @@ function Screen({ project, sizes }: { project: Project; sizes: string }) {
   );
 }
 
-export default function ProjectCard({ project, index }: { project: Project; index: number }) {
+export default function ProjectCard({
+  project,
+  index,
+  compact = false,
+}: {
+  project: Project;
+  index: number;
+  /** hide the stack and description (used for the short "selected work" list on Home) */
+  compact?: boolean;
+}) {
   const [from, to] = backdrops[index % backdrops.length];
   const phone = project.device === "phone";
 
   return (
+    <ScrollScale className="h-full">
     <a
       href={project.url}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`${project.title} — ${project.category} (opens in a new tab)`}
-      className="group relative block rounded-3xl bg-card p-3 transition-colors hover:bg-card-hover"
+      className="group relative flex h-full flex-col rounded-3xl bg-card p-3 transition-colors hover:bg-card-hover"
     >
       <ClipReveal className="overflow-hidden rounded-2xl" delay={(index % 2) * 0.1}>
         <div
@@ -97,6 +107,25 @@ export default function ProjectCard({ project, index }: { project: Project; inde
           </span>
         </span>
       </div>
+
+      {compact ? null : (
+        <div className="flex flex-1 flex-col gap-4 px-3 pb-3 pt-1">
+          <p className="text-sm leading-relaxed text-muted">{project.work}</p>
+          {project.stack.length ? (
+            <ul aria-label="Stack" className="mt-auto flex flex-wrap gap-1.5">
+              {project.stack.map((s) => (
+                <li
+                  key={s}
+                  className="rounded-full border border-line px-2.5 py-1 text-xs font-medium transition-colors group-hover:border-accent/50"
+                >
+                  {s}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+      )}
     </a>
+    </ScrollScale>
   );
 }

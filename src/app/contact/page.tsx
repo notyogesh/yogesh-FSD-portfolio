@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import CopyButton from "@/components/CopyButton";
-import { MailIcon, PhoneIcon, PinIcon, WhatsAppIcon } from "@/components/icons";
+import JsonLd from "@/components/JsonLd";
+import { LinkedInIcon, MailIcon, PhoneIcon, PinIcon, WhatsAppIcon } from "@/components/icons";
 import { FadeUp, TextReveal } from "@/components/Reveal";
 import { contact } from "@/data/contact";
+import { breadcrumbLd, graph, pageLd } from "@/lib/schema";
 
-export const metadata: Metadata = { title: "Contact — Yogeshwara K" };
+const description =
+  "Contact Yogeshwara K, a full stack developer in Chennai. Email, call, WhatsApp or connect on LinkedIn to discuss a project or a role.";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description,
+  alternates: { canonical: "/contact" },
+  openGraph: { type: "website", url: "/contact", title: "Contact | Yogeshwara K", description },
+};
 
 function Card({
   icon,
@@ -13,15 +23,17 @@ function Card({
   value,
   children,
   delay,
+  className,
 }: {
   icon: React.ReactNode;
   label: string;
   value: string;
   children?: React.ReactNode;
   delay: number;
+  className?: string;
 }) {
   return (
-    <FadeUp delay={delay}>
+    <FadeUp delay={delay} className={className}>
       <div className="flex h-full min-h-[220px] flex-col justify-between gap-6 rounded-2xl bg-card p-5 transition-colors duration-300 hover:bg-card-hover">
         <div className="flex items-center gap-3 text-sm text-muted">
           <span className="grid size-9 place-items-center rounded-full border border-line text-fg">{icon}</span>
@@ -37,11 +49,20 @@ function Card({
 }
 
 const action =
-  "inline-flex items-center gap-2 rounded-full bg-linear-to-br from-accent to-accent-2 px-4 py-1.5 text-sm font-medium text-white shadow-[0_8px_22px_-10px_var(--accent)] transition-transform hover:-translate-y-0.5";
+  "inline-flex items-center gap-2 rounded-full bg-linear-to-br from-accent-deep to-accent px-4 py-1.5 text-sm font-medium text-white shadow-[0_8px_22px_-10px_var(--accent)] transition-transform hover:-translate-y-0.5";
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd
+        data={graph(
+          pageLd("ContactPage", "Contact Yogeshwara K", "/contact", description),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Contact", path: "/contact" },
+          ]),
+        )}
+      />
       <TextReveal
         as="h1"
         text="Let's build something together"
@@ -73,8 +94,15 @@ export default function ContactPage() {
           <CopyButton value={contact.phoneRaw} label="Copy WhatsApp number" text="Copy" />
         </Card>
 
-        <Card icon={<PinIcon />} label="Location" value={contact.location} delay={0.18}>
-          <Link href="/portfolio" className="text-sm text-muted underline-offset-4 hover:underline">
+        <Card icon={<LinkedInIcon />} label="LinkedIn" value="yogeshwara-kumar" delay={0.18}>
+          <a href={contact.linkedin} target="_blank" rel="noopener noreferrer me" className={action}>
+            <LinkedInIcon /> View profile<span className="sr-only"> (opens in a new tab)</span>
+          </a>
+          <CopyButton value={contact.linkedin} label="Copy LinkedIn profile link" text="Copy" />
+        </Card>
+
+        <Card icon={<PinIcon />} label="Location" value={contact.location} delay={0.24} className="md:col-span-2">
+          <Link href="/portfolio" className="inline-flex min-h-6 items-center text-sm text-muted underline-offset-4 hover:underline">
             See my work →
           </Link>
         </Card>

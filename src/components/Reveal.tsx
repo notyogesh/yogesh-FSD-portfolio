@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "motion/react";
+import { motion, useInView, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useIntroReady } from "./Intro";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -76,6 +76,30 @@ export function ClipReveal({
       >
         {children}
       </motion.div>
+    </motion.div>
+  );
+}
+
+/**
+ * Scroll-linked entrance: as the element enters the viewport it grows from a smaller size to full size,
+ * rises into place and fades in, tied directly to scroll position (so it also reverses when you scroll back).
+ * Transform-only, so it stays smooth. Skipped for visitors who prefer reduced motion.
+ */
+export function ScrollScale({ children, className }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end 82%"] });
+  const scale = useTransform(scrollYProgress, [0, 1], [0.84, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [90, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.45], [0.25, 1]);
+
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      style={reduce ? undefined : { scale, y, opacity, transformOrigin: "50% 100%" }}
+    >
+      {children}
     </motion.div>
   );
 }

@@ -54,7 +54,7 @@ export default function CopyButton({ value, label, text, className = "", icon }:
         }
       }}
       className={`inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-sm font-medium transition-colors hover:bg-card-hover ${
-        done ? "border-accent text-accent" : ""
+        done ? "border-accent text-accent-text" : ""
       } ${className}`}
     >
       {done ? <CheckIcon /> : (icon ?? <CopyIcon />)}

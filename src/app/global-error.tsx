@@ -14,7 +14,7 @@ export default function GlobalError({ reset }: { error: Error & { digest?: strin
           <button
             type="button"
             onClick={() => reset()}
-            className="rounded-full bg-linear-to-br from-accent to-accent-2 px-5 py-2.5 text-sm font-medium text-white"
+            className="rounded-full bg-linear-to-br from-accent-deep to-accent px-5 py-2.5 text-sm font-medium text-white"
           >
             Try again
           </button>

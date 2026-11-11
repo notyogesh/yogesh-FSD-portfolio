@@ -8,4 +8,5 @@ export const contact = {
   whatsappHref: "https://wa.me/919787820695",
   phoneRaw: "+919787820695",
   location: "Chennai, India",
+  linkedin: "https://www.linkedin.com/in/yogeshwara-kumar/",
 };

@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
 import { FadeUp, TextReveal } from "@/components/Reveal";
+import { breadcrumbLd, graph, pageLd } from "@/lib/schema";
+import { contact } from "@/data/contact";
 
-export const metadata: Metadata = { title: "About — Yogeshwara K" };
+const description =
+  "About Yogeshwara K: a full stack developer in Chennai with 3.5+ years of experience, leading a 4-member team at TechieBall and building web, mobile and AI products for clients in India, the US, Singapore, Saudi Arabia and the UAE.";
+
+export const metadata: Metadata = {
+  title: "About",
+  description,
+  alternates: { canonical: "/about" },
+  openGraph: { type: "profile", url: "/about", title: "About | Yogeshwara K", description },
+};
 
 const hire =
-  "inline-flex items-center gap-2 rounded-full bg-linear-to-br from-accent to-accent-2 px-6 py-3 text-sm font-medium text-white shadow-[0_10px_28px_-10px_var(--accent)] transition-transform hover:-translate-y-0.5";
+  "inline-flex items-center gap-2 rounded-full bg-linear-to-br from-accent-deep to-accent px-6 py-3 text-sm font-medium text-white shadow-[0_10px_28px_-10px_var(--accent)] transition-transform hover:-translate-y-0.5";
 
 const stats = [
   { value: "3.5+", label: "Years building production apps" },
@@ -31,6 +42,15 @@ const how = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        data={graph(
+          pageLd("ProfilePage", "About Yogeshwara K", "/about", description),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" },
+          ]),
+        )}
+      />
       <TextReveal
         as="h1"
         text="Hi, I'm Yogeshwara. I build products end to end."
@@ -45,7 +65,8 @@ export default function AboutPage() {
         </p>
         <p>
           I work mostly with Next.js, React, Flutter, Node.js and NestJS, and I&apos;m comfortable with the parts that
-          make a product real: payments, messaging, cloud hosting and getting an app into the stores.
+          make a product real: payments, messaging, cloud hosting and getting an app into the stores. At TechieBall I
+          lead a 4-member team.
         </p>
       </FadeUp>
 
@@ -59,6 +80,14 @@ export default function AboutPage() {
         >
           View resume
         </Link>
+        <a
+          href={contact.linkedin}
+          target="_blank"
+          rel="noopener noreferrer me"
+          className="rounded-full border border-line px-6 py-3 text-sm font-medium transition-colors hover:bg-card-hover"
+        >
+          LinkedIn<span className="sr-only"> (opens in a new tab)</span>
+        </a>
       </FadeUp>
 
       <div className="mb-3 grid grid-cols-1 gap-3 sm:grid-cols-3">

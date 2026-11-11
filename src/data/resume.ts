@@ -14,6 +14,7 @@ export const experience: Role[] = [
     url: "https://techieball.com/",
     period: "July 2026 – Present",
     points: [
+      "Leading a 4-member development team: planning, code reviews and delivery.",
       "Architected and built the full-stack publishing platform on Next.js, Node.js and MongoDB, optimised for performance and mobile.",
       "Designed asynchronous backend queues, automated sitemap-submission pipelines and custom analytics tracking.",
       "Built admin panels for content workflows, search indexing and performance telemetry.",
@@ -60,6 +61,7 @@ export const languages = ["English", "Tamil"];
 
 /** Highlights that don't belong to a single role. */
 export const highlights = [
+  "Leading a 4-member development team at TechieBall",
   "Assisted with the Google Play Store launch of the Cleomitra mobile app (Flutter)",
   "Designs interfaces in Figma and builds them out in code",
 ];

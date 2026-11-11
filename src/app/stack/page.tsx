@@ -1,13 +1,32 @@
 import type { Metadata } from "next";
 import { FadeUp, TextReveal } from "@/components/Reveal";
 import StackChip from "@/components/StackChip";
+import JsonLd from "@/components/JsonLd";
 import { stack } from "@/data/stack";
+import { breadcrumbLd, graph, pageLd } from "@/lib/schema";
 
-export const metadata: Metadata = { title: "Stack — Yogeshwara K" };
+const description =
+  "The technology stack of Yogeshwara K: Next.js, React, Node.js, NestJS, Flutter, databases, cloud hosting, testing, SEO, AI and payment integrations.";
+
+export const metadata: Metadata = {
+  title: "Stack",
+  description,
+  alternates: { canonical: "/stack" },
+  openGraph: { type: "website", url: "/stack", title: "Stack | Yogeshwara K", description },
+};
 
 export default function StackPage() {
   return (
     <>
+      <JsonLd
+        data={graph(
+          pageLd("WebPage", "Technology stack", "/stack", description),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Stack", path: "/stack" },
+          ]),
+        )}
+      />
       <TextReveal
         as="h1"
         text="The tools I build with"

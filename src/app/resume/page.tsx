@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
 import { FadeUp, TextReveal } from "@/components/Reveal";
+import JsonLd from "@/components/JsonLd";
 import { education, experience, highlights, languages } from "@/data/resume";
+import { breadcrumbLd, graph, pageLd } from "@/lib/schema";
 
-export const metadata: Metadata = { title: "Resume — Yogeshwara K" };
+const description =
+  "Resume of Yogeshwara K: full stack developer with experience at TechieBall, YTS and DMH, a BA in History, and clients in India, the US, Singapore, Saudi Arabia and the UAE.";
+
+export const metadata: Metadata = {
+  title: "Resume",
+  description,
+  alternates: { canonical: "/resume" },
+  openGraph: { type: "profile", url: "/resume", title: "Resume | Yogeshwara K", description },
+};
 
 function Section({ title, children, delay = 0 }: { title: string; children: React.ReactNode; delay?: number }) {
   return (
@@ -18,6 +28,15 @@ function Section({ title, children, delay = 0 }: { title: string; children: Reac
 export default function ResumePage() {
   return (
     <>
+      <JsonLd
+        data={graph(
+          pageLd("ProfilePage", "Resume of Yogeshwara K", "/resume", description),
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Resume", path: "/resume" },
+          ]),
+        )}
+      />
       <TextReveal
         as="h1"
         text="Experience & education"

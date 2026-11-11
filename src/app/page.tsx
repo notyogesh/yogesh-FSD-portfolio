@@ -10,7 +10,7 @@ const featured = ["cleomitra", "bill-management-system", "aivaantech-lms", "zhau
   .filter((p): p is NonNullable<typeof p> => Boolean(p));
 
 const hireClass =
-  "inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-linear-to-br from-accent to-accent-2 px-5 py-2.5 text-sm font-medium text-white shadow-[0_10px_28px_-10px_var(--accent)] transition-transform hover:-translate-y-0.5";
+  "inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-linear-to-br from-accent-deep to-accent px-5 py-2.5 text-sm font-medium text-white shadow-[0_10px_28px_-10px_var(--accent)] transition-transform hover:-translate-y-0.5";
 
 function Tile({
   href,
@@ -120,13 +120,13 @@ export default function Home() {
         {/* selected work */}
         <div className="mt-6 flex items-end justify-between px-1">
           <h2 className="text-2xl font-medium tracking-tight sm:text-3xl">Selected work</h2>
-          <Link href="/portfolio" className="text-sm text-muted underline-offset-4 hover:text-fg hover:underline">
+          <Link href="/portfolio" className="inline-flex min-h-6 items-center text-sm text-muted underline-offset-4 hover:text-fg hover:underline">
             View all →
           </Link>
         </div>
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
           {featured.map((p, i) => (
-            <ProjectCard key={p.slug} project={p} index={i} />
+            <ProjectCard key={p.slug} project={p} index={i} compact />
           ))}
         </div>
 

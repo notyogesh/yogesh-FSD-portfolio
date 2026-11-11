@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = { title: "Page not found — Yogeshwara K" };
+export const metadata: Metadata = { title: "Page not found" };
 
 const primary =
-  "inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-linear-to-br from-accent to-accent-2 px-5 py-2.5 text-sm font-medium text-white shadow-[0_10px_28px_-10px_var(--accent)] transition-transform hover:-translate-y-0.5";
+  "inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-linear-to-br from-accent-deep to-accent px-5 py-2.5 text-sm font-medium text-white shadow-[0_10px_28px_-10px_var(--accent)] transition-transform hover:-translate-y-0.5";
 const secondary =
   "whitespace-nowrap rounded-full border border-line px-5 py-2.5 text-sm font-medium transition-colors hover:bg-card-hover";
 
