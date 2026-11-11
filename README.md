@@ -47,6 +47,16 @@ To get listed:
 3. **Bing Webmaster Tools**: use "Import from Google Search Console", or add the site and set `NEXT_PUBLIC_BING_SITE_VERIFICATION`.
 4. After each deploy, notify Bing and other IndexNow engines instantly: `npm run seo:ping` (Google does not use IndexNow).
 
+## Analytics and tracking
+
+- **Always on (cookie-free):** Vercel Analytics and Speed Insights. Enable them in the Vercel project tabs.
+- **Optional, behind a cookie banner:** Google Tag Manager or Google Analytics 4, and Microsoft Clarity. Set
+  `NEXT_PUBLIC_GTM_ID`, `NEXT_PUBLIC_GA_MEASUREMENT_ID` and/or `NEXT_PUBLIC_CLARITY_ID` (see `.env.example`) and redeploy.
+  With no IDs set, no banner appears and nothing extra loads. Use a GTM ID **or** a GA4 ID, not both, to avoid double counting.
+- Button clicks marked `data-track="..."` (Hire me, Download resume, contact buttons, project links, copy buttons) are sent
+  as `cta_click` events once a visitor accepts.
+- The `/privacy` page explains all of this to visitors.
+
 ## Accessibility
 
 Skip link, visible keyboard focus, accessible mobile menu, contrast-checked colours (WCAG AA), reduced-motion support,

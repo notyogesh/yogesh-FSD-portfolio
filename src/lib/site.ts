@@ -38,6 +38,10 @@ export const SITE = {
     "Razorpay",
     "Stripe",
     "SEO",
+    "Web accessibility",
+    "Framer Motion",
+    "Redux Toolkit",
+    "GSAP",
   ],
   employer: { name: "TechieBall", url: "https://techieball.com/" },
 };

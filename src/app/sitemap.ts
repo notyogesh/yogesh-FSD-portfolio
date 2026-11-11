@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/stack"), priority: 0.6, changeFrequency: "yearly" },
     { url: absoluteUrl("/resume"), priority: 0.6, changeFrequency: "yearly" },
     { url: absoluteUrl("/contact"), priority: 0.6, changeFrequency: "yearly" },
+    { url: absoluteUrl("/privacy"), priority: 0.2, changeFrequency: "yearly" },
   ];
 
   const articles: MetadataRoute.Sitemap = posts.map((p) => ({

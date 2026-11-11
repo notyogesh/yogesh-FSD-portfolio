@@ -101,6 +101,8 @@ export default function ProjectCard({
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
+              data-track="project_click"
+              data-track-label={project.slug}
               className="after:absolute after:inset-0 after:rounded-3xl"
             >
               {project.title}

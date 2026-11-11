@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Tracking from "@/components/Tracking";
 import { SITE } from "@/lib/site";
 
 const geistSans = Geist({
@@ -107,6 +108,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <JsonLd data={structuredData} />
         <Analytics />
         <SpeedInsights />
+        <Tracking />
       </body>
     </html>
   );

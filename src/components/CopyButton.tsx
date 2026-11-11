@@ -46,6 +46,8 @@ export default function CopyButton({ value, label, text, className = "", icon }:
       type="button"
       aria-label={done ? "Copied to clipboard" : label}
       title={label}
+      data-track="copy"
+      data-track-label={label}
       onClick={async () => {
         if (await copyText(value)) {
           setDone(true);

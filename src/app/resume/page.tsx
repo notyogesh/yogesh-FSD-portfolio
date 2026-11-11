@@ -53,6 +53,7 @@ export default function ResumePage() {
         <a
           href="/Yogeshwara_K_Resume.pdf"
           download="Yogeshwara_K_Resume.pdf"
+          data-track="resume_download"
           className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-linear-to-br from-accent-deep to-accent px-6 py-3 text-sm font-medium text-white shadow-[0_10px_28px_-10px_var(--accent)] transition-transform hover:-translate-y-0.5"
         >
           <svg viewBox="0 0 24 24" className="size-4" aria-hidden fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

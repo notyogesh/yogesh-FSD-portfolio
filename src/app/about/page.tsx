@@ -65,13 +65,12 @@ export default function AboutPage() {
         </p>
         <p>
           I work mostly with Next.js, React, Flutter, Node.js and NestJS, and I&apos;m comfortable with the parts that
-          make a product real: payments, messaging, cloud hosting and getting an app into the stores. At TechieBall I
-          lead a 4-member team.
+          make a product real: payments, messaging, cloud hosting and getting an app into the stores.
         </p>
       </FadeUp>
 
       <FadeUp delay={0.3} className="mb-10 flex flex-wrap items-center gap-3 px-1">
-        <Link href="/contact" className={hire}>
+        <Link href="/contact" data-track="hire_me" data-track-label="about" className={hire}>
           Hire me
         </Link>
         <Link
@@ -118,7 +117,7 @@ export default function AboutPage() {
             <h2 className="text-2xl font-medium tracking-tight sm:text-3xl">Have something in mind?</h2>
             <p className="mt-2 text-muted">Let&apos;s talk about your project, a role, or an idea.</p>
           </div>
-          <Link href="/contact" className={hire}>
+          <Link href="/contact" data-track="hire_me" data-track-label="about" className={hire}>
             Hire me
           </Link>
         </div>

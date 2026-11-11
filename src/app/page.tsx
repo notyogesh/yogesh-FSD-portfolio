@@ -89,7 +89,7 @@ export default function Home() {
               />
             </div>
             <div className="flex items-center gap-3">
-              <Link href="/contact" className={hireClass}>
+              <Link href="/contact" data-track="hire_me" data-track-label="home" className={hireClass}>
                 Hire me
               </Link>
               <Link
@@ -148,7 +148,7 @@ export default function Home() {
               <h2 className="text-2xl font-medium tracking-tight sm:text-3xl">Have something in mind?</h2>
               <p className="mt-2 text-muted">Let&apos;s talk about your project, a role, or an idea.</p>
             </div>
-            <Link href="/contact" className={hireClass}>
+            <Link href="/contact" data-track="hire_me" data-track-label="home" className={hireClass}>
               Hire me
             </Link>
           </div>

@@ -74,28 +74,28 @@ export default function ContactPage() {
 
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         <Card icon={<MailIcon />} label="Email" value={contact.email} delay={0}>
-          <a href={`mailto:${contact.email}`} className={action}>
+          <a href={`mailto:${contact.email}`} data-track="contact_email" className={action}>
             <MailIcon /> Send email
           </a>
           <CopyButton value={contact.email} label="Copy email address" text="Copy" />
         </Card>
 
         <Card icon={<PhoneIcon />} label="Phone" value={contact.phone} delay={0.06}>
-          <a href={contact.phoneHref} className={action}>
+          <a href={contact.phoneHref} data-track="contact_call" className={action}>
             <PhoneIcon /> Call
           </a>
           <CopyButton value={contact.phone} label="Copy phone number" text="Copy" />
         </Card>
 
         <Card icon={<WhatsAppIcon />} label="WhatsApp" value={contact.phone} delay={0.12}>
-          <a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" className={action}>
+          <a href={contact.whatsappHref} target="_blank" rel="noopener noreferrer" data-track="contact_whatsapp" className={action}>
             <WhatsAppIcon /> Chat on WhatsApp
           </a>
           <CopyButton value={contact.phoneRaw} label="Copy WhatsApp number" text="Copy" />
         </Card>
 
         <Card icon={<LinkedInIcon />} label="LinkedIn" value="yogeshwara-kumar" delay={0.18}>
-          <a href={contact.linkedin} target="_blank" rel="noopener noreferrer me" className={action}>
+          <a href={contact.linkedin} target="_blank" rel="noopener noreferrer me" data-track="contact_linkedin" className={action}>
             <LinkedInIcon /> View profile<span className="sr-only"> (opens in a new tab)</span>
           </a>
           <CopyButton value={contact.linkedin} label="Copy LinkedIn profile link" text="Copy" />

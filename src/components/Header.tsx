@@ -83,6 +83,8 @@ export default function Header() {
           </Link>
           <Link
             href="/contact"
+            data-track="hire_me"
+            data-track-label="header"
             className="whitespace-nowrap rounded-full bg-linear-to-br from-accent-deep to-accent px-4 py-1.5 text-white shadow-[0_8px_22px_-10px_var(--accent)] transition-transform hover:-translate-y-0.5"
           >
             Hire me
