@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Archivo_Black, Geist } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
+import SmoothScroll from "@/components/SmoothScroll";
 import Tracking from "@/components/Tracking";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -77,9 +78,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a href="#main" className="skip-link">
           Skip to main content
         </a>
-        <main id="main" tabIndex={-1} className="outline-none">
-          {children}
-        </main>
+        <SmoothScroll>
+          <main id="main" tabIndex={-1} className="outline-none">
+            {children}
+          </main>
+        </SmoothScroll>
         <JsonLd data={structuredData} />
         <Analytics />
         <SpeedInsights />
