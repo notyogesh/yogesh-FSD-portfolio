@@ -63,6 +63,12 @@ export default function CampaignCarousel({ items }: { items: Campaign[] }) {
   const n = items.length;
   const auto = playing && !hold && !dragging && !reduce;
 
+  // on large screens open with Cleomitra in the middle, so cards show on both sides
+  useEffect(() => {
+    const i = items.findIndex((c) => c.slug === "cleomitra");
+    if (i > 0 && window.matchMedia("(min-width: 1024px)").matches) setActive(i);
+  }, [items]);
+
   // auto-advance: slides forward, then glides back to the first card
   useEffect(() => {
     if (!auto) return;
