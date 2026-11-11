@@ -183,31 +183,6 @@ export const services = [
   },
 ];
 
-export const toolkit = [
-  "Google Ads",
-  "YouTube Ads",
-  "Meta Ads Manager",
-  "Google Analytics 4",
-  "Google Tag Manager",
-  "Meta Pixel",
-  "Google Search Console",
-  "Microsoft Clarity",
-  "Google Keyword Planner",
-  "Google Business Profile",
-  "Shopify",
-  "Amazon Seller Central",
-  "Flipkart Seller Hub",
-  "Meesho Supplier Panel",
-  "Blinkit",
-  "Razorpay",
-  "Stripe",
-  "Google Flow (AI video)",
-  "Claude",
-  "ChatGPT",
-  "Gemini",
-  "Google Workspace",
-];
-
 export const experience = [
   {
     role: "Business Development Manager & Full Stack Developer",

@@ -1,8 +1,10 @@
 import Link from "next/link";
 import CopyButton from "@/components/CopyButton";
 import { LinkedInIcon, MailIcon, PhoneIcon, WhatsAppIcon } from "@/components/icons";
-import { campaigns, experience, services, stats, toolkit } from "@/data/campaigns";
+import { campaigns, experience, services, stats } from "@/data/campaigns";
 import { contact } from "@/data/contact";
+import { logos } from "@/data/logos";
+import { toolGroups } from "@/data/tools";
 import Reveal from "./Reveal";
 
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -156,26 +158,48 @@ export function About() {
   );
 }
 
-export function Toolkit() {
+export function Tools() {
   return (
-    <section aria-labelledby="toolkit-title" className={shell}>
+    <section id="tools" aria-labelledby="tools-title" className={shell}>
       <Reveal>
-        <div className="mb-8">
-          <p className="mb-3 text-xs font-medium uppercase tracking-[0.3em] text-accent-text">Toolkit</p>
-          <h2 id="toolkit-title" className="font-display text-3xl uppercase leading-[1.05] tracking-tight sm:text-5xl">
-            Tools I work in
+        <div className="mb-10">
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.3em] text-accent-text">Tools &amp; platforms</p>
+          <h2 id="tools-title" className="max-w-3xl font-display text-3xl uppercase leading-[1.05] tracking-tight sm:text-5xl">
+            The tools I run campaigns on
           </h2>
         </div>
       </Reveal>
-      <Reveal delay={0.1}>
-        <ul className="flex flex-wrap gap-2">
-          {toolkit.map((t) => (
-            <li key={t} className="rounded-full border border-line px-4 py-2 text-sm transition-colors hover:border-accent hover:bg-card">
-              {t}
-            </li>
-          ))}
-        </ul>
-      </Reveal>
+      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+        {toolGroups.map((g, i) => (
+          <Reveal key={g.title} delay={(i % 3) * 0.07} className="h-full">
+            <div className="flex h-full flex-col gap-4 rounded-3xl border border-line bg-card p-5">
+              <h3 className="text-xs font-medium uppercase tracking-[0.22em] text-muted">{g.title}</h3>
+              <ul className="flex flex-wrap gap-2">
+                {g.tools.map((t) => {
+                  const logo = t.logo ? logos[t.logo] : undefined;
+                  return (
+                    <li
+                      key={t.name}
+                      className="flex items-center gap-2 rounded-full border border-line py-1.5 pl-2 pr-3.5 text-sm transition-colors hover:border-white/30 hover:bg-card-hover"
+                    >
+                      <span aria-hidden className="grid size-6 shrink-0 place-items-center">
+                        {logo ? (
+                          <svg viewBox="0 0 24 24" className="size-5" fill={logo.hex === "#000000" ? "#f4efec" : logo.hex}>
+                            <path d={logo.path} />
+                          </svg>
+                        ) : (
+                          <span className="font-mono text-[10px] font-semibold leading-none text-muted">{t.mono}</span>
+                        )}
+                      </span>
+                      {t.name}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </Reveal>
+        ))}
+      </div>
     </section>
   );
 }

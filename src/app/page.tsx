@@ -1,7 +1,7 @@
 import JsonLd from "@/components/JsonLd";
 import CampaignCarousel from "@/components/dm/CampaignCarousel";
 import Nav from "@/components/dm/Nav";
-import { About, CampaignList, Contact, Experience, Footer, Results, Services, Toolkit } from "@/components/dm/Sections";
+import { About, CampaignList, Contact, Experience, Footer, Results, Services, Tools } from "@/components/dm/Sections";
 import { campaigns } from "@/data/campaigns";
 import { graph, pageLd, personId } from "@/lib/schema";
 import { SITE, absoluteUrl } from "@/lib/site";
@@ -49,6 +49,9 @@ export default function Home() {
           Yogeshwara K
         </h1>
         <p className="mt-5 text-sm font-semibold uppercase tracking-[0.3em] sm:text-base">Digital marketing &amp; growth</p>
+        <p className="mx-auto mt-4 max-w-2xl text-sm text-muted sm:text-base">
+          Google Ads · Meta Ads · YouTube Ads · SEO · Local SEO · GA4 &amp; GTM · Shopify
+        </p>
         <p className="mt-6 inline-flex items-center gap-2 text-xs text-muted">
           <span className="size-1.5 rounded-full bg-accent-text" aria-hidden />
           Open for work · Chennai · ₹20L+ in ad spend managed
@@ -60,11 +63,11 @@ export default function Home() {
         <CampaignCarousel items={campaigns} />
       </section>
 
+      <Tools />
       <Results />
       <CampaignList />
       <Services />
       <About />
-      <Toolkit />
       <Experience />
       <Contact />
       <Footer />
