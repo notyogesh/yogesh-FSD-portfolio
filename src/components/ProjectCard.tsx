@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
+import ProjectDrawer from "./ProjectDrawer";
 import { ClipReveal, ScrollScale } from "./Reveal";
 import type { Project } from "@/data/projects";
 
@@ -52,6 +55,7 @@ export default function ProjectCard({
   /** heading level for the project title, so the page outline stays in order */
   heading?: "h2" | "h3";
 }) {
+  const [open, setOpen] = useState(false);
   const [from, to] = backdrops[index % backdrops.length];
   const phone = project.device === "phone";
 
@@ -96,18 +100,18 @@ export default function ProjectCard({
 
         <div className="flex items-center justify-between gap-3 px-3 pb-2 pt-4 text-sm font-medium">
           <Heading className="text-base font-medium">
-            {/* the link sits on the title and is stretched over the whole card, so the entire card is clickable */}
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-track="project_click"
+            {/* the button sits on the title and is stretched over the whole card, so the entire card is clickable */}
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              aria-haspopup="dialog"
+              data-track="project_open"
               data-track-label={project.slug}
-              className="after:absolute after:inset-0 after:rounded-3xl"
+              className="cursor-pointer text-left after:absolute after:inset-0 after:rounded-3xl"
             >
               {project.title}
-              <span className="sr-only"> (opens in a new tab)</span>
-            </a>
+              <span className="sr-only"> (opens project details)</span>
+            </button>
           </Heading>
           <span className="flex items-center gap-2 text-muted">
             {project.category}
@@ -138,6 +142,7 @@ export default function ProjectCard({
           </div>
         )}
       </article>
+      <ProjectDrawer project={project} open={open} onClose={() => setOpen(false)} />
     </ScrollScale>
   );
 }

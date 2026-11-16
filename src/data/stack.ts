@@ -90,6 +90,7 @@ export const stack: StackGroup[] = [
       l("DigitalOcean", "digitalocean"),
       l("Cloudflare R2", "cloudflare"),
       l("Nginx", "nginx"),
+      m("Windows", "WIN", "#0078D4"),
       l("Linux", "linux"),
       m("Domains & DNS", "DNS"),
       l("Docker", "docker"),
