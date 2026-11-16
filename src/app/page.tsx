@@ -1,7 +1,9 @@
 import JsonLd from "@/components/JsonLd";
+import { Faq } from "@/components/cb/Faq";
 import Header from "@/components/cb/Header";
 import { Contact, Experience, Footer, Hero, Numbers, Process, Skills, Work } from "@/components/cb/Sections";
 import { work } from "@/data/combined";
+import { faq } from "@/data/faq";
 import { graph, pageLd, personId } from "@/lib/schema";
 import { SITE, absoluteUrl } from "@/lib/site";
 
@@ -23,6 +25,15 @@ export default function Home() {
             serviceType: ["Web and mobile app development", "Digital marketing", "SEO", "Business development"],
           },
           {
+            "@type": "FAQPage",
+            "@id": `${absoluteUrl("/")}#faq`,
+            mainEntity: faq.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          },
+          {
             "@type": "ItemList",
             name: "Selected work",
             itemListElement: work.map((w, i) => ({
@@ -41,6 +52,7 @@ export default function Home() {
       <Process />
       <Skills />
       <Experience />
+      <Faq />
       <Contact />
       <Footer />
     </>
