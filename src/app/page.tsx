@@ -1,8 +1,10 @@
 import JsonLd from "@/components/JsonLd";
 import CampaignCarousel from "@/components/dm/CampaignCarousel";
+import { Faq } from "@/components/dm/Faq";
 import Nav from "@/components/dm/Nav";
 import { About, CampaignList, Contact, Experience, Footer, Results, Services, Tools } from "@/components/dm/Sections";
 import { campaigns } from "@/data/campaigns";
+import { faq } from "@/data/faq";
 import { graph, pageLd, personId } from "@/lib/schema";
 import { SITE, absoluteUrl } from "@/lib/site";
 
@@ -29,6 +31,15 @@ export default function Home() {
                 itemOffered: { "@type": "Service", name: s },
               })),
             },
+          },
+          {
+            "@type": "FAQPage",
+            "@id": `${absoluteUrl("/")}#faq`,
+            mainEntity: faq.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
           },
           {
             "@type": "ItemList",
@@ -69,6 +80,7 @@ export default function Home() {
       <Services />
       <About />
       <Experience />
+      <Faq />
       <Contact />
       <Footer />
     </>
