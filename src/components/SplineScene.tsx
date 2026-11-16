@@ -85,9 +85,8 @@ function Poster({ fading }: { fading: boolean }) {
 
 /**
  * The 3D scene is heavy (about 650 KiB of code plus several seconds of script time on a phone), so it never
- * loads with the page. A light poster shows first, and the real scene loads only after the visitor first
- * interacts (scroll, touch, click or key press) and its tile is near the screen. That keeps the page fast
- * and the Lighthouse score high.
+ * loads with the page. A light poster shows first, and the real scene starts loading (when the browser is idle)
+ * as soon as its tile is near the screen, with no need to wait for the visitor to interact.
  */
 export default function SplineScene({ className }: { className?: string }) {
   const host = useRef<HTMLDivElement>(null);
@@ -99,8 +98,6 @@ export default function SplineScene({ className }: { className?: string }) {
     if (!el) return;
     let stopRemap: (() => void) | undefined;
     let started = false;
-    let interacted = false;
-    let near = false;
 
     const mount = () => {
       if (el.querySelector("spline-viewer")) return;
@@ -125,26 +122,17 @@ export default function SplineScene({ className }: { className?: string }) {
       document.head.appendChild(s);
     };
 
-    const maybeStart = () => {
-      if (started || !interacted || !near) return;
+    const start = () => {
+      if (started) return;
       started = true;
-      cleanupListeners();
+      io.disconnect();
       if ("requestIdleCallback" in window) requestIdleCallback(load, { timeout: 800 });
       else setTimeout(load, 200);
     };
 
-    const events = ["scroll", "wheel", "touchstart", "pointerdown", "keydown"] as const;
-    const onInteract = () => {
-      interacted = true;
-      maybeStart();
-    };
-    const cleanupListeners = () => events.forEach((e) => window.removeEventListener(e, onInteract));
-    events.forEach((e) => window.addEventListener(e, onInteract, { passive: true }));
-
     const io = new IntersectionObserver(
       ([entry]) => {
-        near = entry.isIntersecting;
-        maybeStart();
+        if (entry.isIntersecting) start();
       },
       { rootMargin: "600px" },
     );
@@ -152,7 +140,6 @@ export default function SplineScene({ className }: { className?: string }) {
 
     return () => {
       io.disconnect();
-      cleanupListeners();
       stopRemap?.();
     };
   }, []);
