@@ -31,7 +31,7 @@ const how = [
   },
   {
     title: "Connect the real world",
-    text: "Payments with Razorpay, Stripe and Square. WhatsApp Business API, Twilio and Exotel messaging. AI features with Gemini and Amazon Bedrock.",
+    text: "Payments with Razorpay, Stripe and Square. WhatsApp Business API, Twilio and Exotel messaging. AI agents, chatbots and LLM integrations with Gemini and Amazon Bedrock.",
   },
   {
     title: "Ship and keep it running",

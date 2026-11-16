@@ -10,7 +10,7 @@ export const SITE = {
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://yogesh-fsd-portfolio.vercel.app").replace(/\/$/, ""),
   title: "Yogeshwara K — Full Stack Developer in Chennai",
   description:
-    "Full stack developer in Chennai with 3.5+ years of experience building web and mobile apps, CRM platforms, e-commerce stores and AI automation with Next.js, React, Node.js, NestJS and Flutter. Available for hire.",
+    "Full stack developer in Chennai with 3.5+ years of experience building web and mobile apps, CRM platforms, e-commerce stores and AI automation (AI agents and LLM integrations) with Next.js, React, Node.js, NestJS and Flutter. Available for hire.",
   locale: "en_IN",
   linkedin: contact.linkedin,
   keywords: [
@@ -22,6 +22,7 @@ export const SITE = {
     "Flutter developer",
     "freelance web developer India",
     "WhatsApp Business API developer",
+    "AI agents and LLM integration developer",
     "hire full stack developer",
   ],
   knowsAbout: [
@@ -37,6 +38,8 @@ export const SITE = {
     "WhatsApp Business API",
     "Razorpay",
     "Stripe",
+    "AI agents",
+    "LLM integration",
     "SEO",
     "Web accessibility",
     "Framer Motion",

@@ -120,6 +120,7 @@ export const stack: StackGroup[] = [
       m("Google Imagen API", "Im", "#4285F4"),
       m("LLM API Integration", "LLM"),
       m("Prompt Engineering", "Pr"),
+      m("AI Agents", "Ag"),
       m("AI Chatbots", "AI"),
       m("AI Content Automation", "AC"),
     ],

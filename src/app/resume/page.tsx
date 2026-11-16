@@ -44,7 +44,7 @@ export default function ResumePage() {
       />
       <FadeUp delay={0.2} className="mb-8 max-w-2xl px-1 text-muted">
         <p>
-          3.5+ years building production web and mobile apps, CRM platforms, e-commerce stores and AI automation for
+          3.5+ years building production web and mobile apps, CRM platforms, e-commerce stores and AI automation (AI agents, LLM integrations) for
           clients in India, the US, Singapore, Saudi Arabia and the UAE.
         </p>
       </FadeUp>

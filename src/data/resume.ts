@@ -31,7 +31,7 @@ export const experience: Role[] = [
       "Engineered Node.js and MongoDB REST APIs and admin panels for bookings, lead management, refunds and notifications.",
       "Integrated Razorpay, Stripe and Square with refund handling, webhook verification and transaction tracking.",
       "Managed WhatsApp Cloud API and BSP services for business clients, and AWS deployments (Amplify, Route 53, S3, CloudFront, SES, SNS).",
-      "Developed an AI-powered autoblog system with Node.js, Gemini API, Google Imagen API, Sharp and GitHub Actions.",
+      "Developed an AI agent for autonomous blog publishing (autoblog system) with Node.js, Gemini API, Google Imagen API, Sharp and GitHub Actions.",
     ],
   },
   {

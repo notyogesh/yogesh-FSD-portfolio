@@ -27,11 +27,11 @@ export const projects: Project[] = [
   {
     slug: "cleomitra",
     title: "Cleomitra",
-    category: "CRM & WhatsApp Automation",
+    category: "Company Website · AI Automation",
     url: "https://www.cleomitra.com/",
     image: "/projects/cleomitra.jpg",
-    stack: ["Next.js", "WhatsApp Business API", "Exotel", "Twilio", "Amazon Bedrock"],
-    work: "Built integrations with Exotel, Twilio and the WhatsApp Business API, plus an AI chatbot on Amazon Bedrock, for this CRM and WhatsApp automation platform.",
+    stack: ["Next.js", "AI Agents", "LLM Integration"],
+    work: "Next.js website for the Cleomitra CRM, with blog automation run by AI agents and LLM integration. The CRM application itself is Cleomitra App.",
   },
   {
     slug: "bill-management-system",
@@ -81,12 +81,12 @@ export const projects: Project[] = [
   {
     slug: "cleomitra-app",
     title: "Cleomitra App",
-    category: "Mobile App · Play Store",
+    category: "CRM Application · Flutter",
     url: "https://www.cleomitra.app/",
     color: "#5b1a3a",
     device: "phone",
-    stack: ["Flutter"],
-    work: "Improved Flutter UI/UX components, fixed performance bottlenecks, supported customer onboarding and production issues, and helped with the Google Play Store launch.",
+    stack: ["Flutter", "WhatsApp Business API", "Exotel", "Twilio", "Amazon Bedrock"],
+    work: "The Cleomitra CRM application, built with Flutter and many integrations. I assisted with the Exotel, WhatsApp Business API and Twilio integrations and the AI chatbot, plus bug fixing and production support, Flutter UI/UX and performance fixes, customer onboarding and the Google Play Store launch.",
   },
   {
     slug: "techieball",
@@ -122,7 +122,7 @@ export const projects: Project[] = [
     url: "https://www.yakriatech.com/",
     image: "/projects/yakriatech.jpg",
     stack: ["Next.js", "Node.js", "Gemini API", "Imagen API", "Sharp", "GitHub Actions"],
-    work: "Built an AI autoblog engine: Gemini writes the posts, Imagen creates the images, Sharp converts them to WebP, and GitHub Actions publishes and deploys them automatically.",
+    work: "Built an AI agent that runs the blog on its own (an autoblog engine): Gemini writes the posts, Imagen creates the images, Sharp converts them to WebP, and GitHub Actions publishes and deploys them automatically.",
   },
   {
     slug: "yora",
