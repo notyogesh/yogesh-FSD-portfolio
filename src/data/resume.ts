@@ -62,6 +62,6 @@ export const languages = ["English", "Tamil"];
 /** Highlights that don't belong to a single role. */
 export const highlights = [
   "Leading a 4-member development team at TechieBall",
-  "Assisted with the Google Play Store launch of the Cleomitra mobile app (Flutter)",
+  "Assisted with the Google Play Store launches of the Cleomitra mobile app (Flutter, also on iOS and the web)",
   "Designs interfaces in Figma and builds them out in code",
 ];

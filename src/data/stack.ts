@@ -44,6 +44,8 @@ export const stack: StackGroup[] = [
       l("Zod", "zod"),
       l("shadcn/ui / Radix UI", "shadcn"),
       m("NextAuth (Auth.js)", "Au"),
+      m("Google SSO", "G"),
+      m("Facebook SSO", "f"),
     ],
   },
   {
@@ -139,7 +141,7 @@ export const stack: StackGroup[] = [
   },
   {
     title: "Design & Release",
-    items: [l("Figma", "figma"), l("Google Play Store launches", "googleplay"), m("UI / UX Design", "UX")],
+    items: [l("Figma", "figma"), m("Google Stitch", "St", "#4285F4"), l("Google Play Store launches", "googleplay"), m("UI / UX Design", "UX")],
   },
   {
     title: "Platforms & CMS",

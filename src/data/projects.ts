@@ -81,12 +81,12 @@ export const projects: Project[] = [
   {
     slug: "cleomitra-app",
     title: "Cleomitra App",
-    category: "CRM Application · Flutter",
+    category: "CRM Application · Android, iOS & Web",
     url: "https://www.cleomitra.app/",
     color: "#5b1a3a",
     device: "phone",
     stack: ["Flutter", "WhatsApp Business API", "Exotel", "Twilio", "Amazon Bedrock"],
-    work: "The Cleomitra CRM application, built with Flutter and many integrations. I assisted with the Exotel, WhatsApp Business API and Twilio integrations and the AI chatbot, plus bug fixing and production support, Flutter UI/UX and performance fixes, customer onboarding and the Google Play Store launch.",
+    work: "The Cleomitra CRM application, built with Flutter for Android, iOS and the web, with many integrations. I assisted with the Exotel, WhatsApp Business API and Twilio integrations and the AI chatbot, plus bug fixing and production support, Flutter UI/UX and performance fixes, customer onboarding and the Google Play Store launches.",
   },
   {
     slug: "techieball",
@@ -140,7 +140,7 @@ export const projects: Project[] = [
     url: "https://www.sivakasicrackerworld.com/",
     image: "/projects/sivakasi-cracker-world.jpg",
     stack: ["Next.js", "Payload CMS"],
-    work: "A wholesale cracker store with a searchable price list, live stock counts and WhatsApp ordering.",
+    work: "A Next.js wholesale cracker store with a searchable price list, live stock counts and WhatsApp ordering. It has an admin dashboard that manages multiple vendors, a CMS for site content, and an admin page to add and edit products.",
   },
   {
     slug: "yazz",
